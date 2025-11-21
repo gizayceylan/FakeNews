@@ -124,13 +124,9 @@ These are planned for the following development phase:
 
 ### **Full Multimodal Orchestrator** (to-be-updated)
 Combining:
-- CLIP image concepts  
-- Image classifier output  
-- User text  
-- BLIP caption  
-- Text classifiers  
-- Cross-modal similarity  
-- Multimodal LLM reasoning  
+- Classifiers (for comparisions)
+- Multiple VLM + LLM agents  
+- Multimodal-multiagent LLM reasoning  
 
 ### **FastVLM experiments**
 A new vision-language model for improved speed/accuracy.

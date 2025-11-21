@@ -122,7 +122,7 @@ Build a lightweight multimodal system combining user-provided captions and BLIP-
 
 These are planned for the following development phase:
 
-### ** Full Multimodal Orchestrator** (to-be-updated)
+### **Full Multimodal Orchestrator** (to-be-updated)
 Combining:
 - CLIP image concepts  
 - Image classifier output  
@@ -132,10 +132,10 @@ Combining:
 - Cross-modal similarity  
 - Multimodal LLM reasoning  
 
-### ** FastVLM experiments**
+### **FastVLM experiments**
 A new vision-language model for improved speed/accuracy.
 
-### ** Streamlit Interface**
+### **Streamlit Interface**
 Interactive demo for:
 - Uploading images  
 - Providing captions  

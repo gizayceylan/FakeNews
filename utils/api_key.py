@@ -1,6 +1,7 @@
 # utils/api_key.py
 
 import os
+from getpass import getpass
 from openai import OpenAI
 
 def load_openai_client():
@@ -8,9 +9,9 @@ def load_openai_client():
     Secure & portable OpenAI API loader.
 
     It tries these in order:
-    1) Google Colab secrets (if running in Colab)
+    1) Google Colab secrets (if available)
     2) Environment variable OPENAI_API_KEY
-    3) Manual user input (last fallback)
+    3) Secure user prompt (fallback)
 
     Returns:
         OpenAI: Initialized OpenAI client.
@@ -25,14 +26,14 @@ def load_openai_client():
         pass
 
     # 2) Environment variables
-    if api_key is None:
+    if not api_key:
         api_key = os.getenv("OPENAI_API_KEY")
 
-    # 3) Manual input (fallback)
-    if api_key is None:
-        api_key = input("Enter your OpenAI API key: ").strip()
+    # 3) Secure promt (fallback)
+    if not api_key:
+        api_key = getpass("Enter your OpenAI API key: ").strip()
 
-    # Make key available globally for other tools/libraries
+    # Make key available during session
     os.environ["OPENAI_API_KEY"] = api_key
 
     # Return initialized client

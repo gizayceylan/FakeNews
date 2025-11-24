@@ -29,7 +29,7 @@ def load_openai_client():
     if not api_key:
         api_key = os.getenv("OPENAI_API_KEY")
 
-    # 3) Secure promt (fallback)
+    # 3) Secure prompt (fallback)
     if not api_key:
         api_key = getpass("Enter your OpenAI API key: ").strip()
         

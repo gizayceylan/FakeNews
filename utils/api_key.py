@@ -32,9 +32,13 @@ def load_openai_client():
     # 3) Secure promt (fallback)
     if not api_key:
         api_key = getpass("Enter your OpenAI API key: ").strip()
+        
+    # Validate empty or invalid input
+    if not api_key:
+        raise ValueError("No OpenAI API key provided.")
 
-    # Make key available during session
+    # Store key in session
     os.environ["OPENAI_API_KEY"] = api_key
 
     # Return initialized client
-    return OpenAI(api_key=api_key)
+    return OpenAI()

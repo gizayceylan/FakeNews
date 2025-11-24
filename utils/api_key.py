@@ -14,7 +14,7 @@ def load_openai_client():
     3) Secure user prompt (fallback)
 
     Returns:
-        OpenAI: Initialized OpenAI client.
+        OpenAI client
     """
     api_key = None
 

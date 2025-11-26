@@ -19,13 +19,13 @@ Classify whether a news headline is real or fake, using text only.
 1. Use a pretrained **RoBERTa** as a classifier to predict *fake/real* user captions.
 2. Extract prediction label + confidence.
 3. Pass results to **GPT-4.1 Mini** for reasoning:
-  - Provide decision (Real/Fake/Unclear)
+  - Provide decision (Fake/Real)
   - Provide explanation
   - Suggest an action (nudge)
 
 ### **Components**
 - `roberta-base-openai-detector`
-- GPT-4.1 Mini (LLM reasoning)
+- `gpt-4.1-mini` (LLM reasoning)
 - Standard text preprocessing
 
 ### **Evaluation**
@@ -35,28 +35,25 @@ Classify whether a news headline is real or fake, using text only.
 
 ---
 
-## 2. Image-Only Pipeline
+## 2. Visual-Only Pipeline
 
 ### **Goal**  
-Detect misinformation from the image alone (no textual input).
+Detect misinformation from the visual information alone (no accompanying caption).
 
 ### **Approach**
 1. Extract **CLIP image embeddings**.
 2. Compute **Top-K visual concepts** (ImageNet + Places365 labels).
-3. Train a lightweight **Logistic Regression classifier** on the embeddings.
-4. Provide classifier outputs to GPT-4.1 Mini:
-   - Top-K visual concepts
-   - Image classifier prediction (real/fake)
-   - Confidence score
+3. Perform **zero-shot classification** with CLIP.
+4. Pass the zero-shot output + Top-K visual concepts to **GPT-4.1-mini**
 5. LLM provides decision, explanation, and nudge.
 
 ### **Components**
-- CLIP ViT-B/32 image encoder  
-- Logistic Regression classifier  
-- GPT-4.1 Mini (reasoning)
+- `openai/clip-vit-base-patch32`  
+- ImageNet + Places365 concept embeddings
+- `gpt-4.1-mini` (reasoning)
 
 ### **Evaluation**
-- Accuracy of classifier + LLM
+- Accuracy of Zero-Shot CLIP + LLM
 - Confusion matrices  
 - Classification reports  
 

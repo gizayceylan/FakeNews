@@ -82,10 +82,10 @@ Detect misinformation by converting the image into a caption, then analyzing the
 
 ---
 
-## 4. Basic Multimodal Pipeline 
+## 4. Image-to-Text Fusion Pipeline 
 
 ### **Goal**  
-Build a lightweight multimodal system combining user-provided captions and BLIP-generated captions.
+Build a lightweight fusion system that combines user-provided captions with AI-generated captions to detect misinformation.
 
 ### **Approach**
 1. **User caption (ground truth text)**  

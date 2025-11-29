@@ -121,8 +121,8 @@ These are planned for the following development phase:
 
 ### **Full Multimodal Orchestrator** (to-be-updated)
 Combining:
-- Classifiers (for comparisions)
-- Multiple VLM + LLM agents  
+- (optional) Classifiers (for comparisions with initial pipelines)
+- Multiple VLM + LLM agents + LangChain
 - Multimodal-multiagent LLM reasoning  
 
 ### **FastVLM experiments**

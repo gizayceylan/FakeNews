@@ -10,7 +10,7 @@ All notebooks here use:
 - multiple tools (vision, text, consistency),
 - and a structured, phase-based reasoning prompt.
 
-We currently include:
+It currently includes:
 
 - **Blind tool-using agent** – LLM cannot see the image, relies on tools.
 - **Vision-enabled tool-using agent** – LLM sees the image + uses the same tools.

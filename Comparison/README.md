@@ -4,6 +4,20 @@ This directory evaluates the progress of **five selected pipelines**, analyzing 
 
 It includes the source code **[(notebooks)](./notebooks/)**, granular tool/agent performance metrics, and a comparative benchmark on a balanced Fakeddit subset (N=150).
 
+## Pipeline Glossary
+
+The following architectures were selected to represent key phases of the project's evolution:
+
+| ID | Acronym | Description | Core Logic |
+| :--- | :--- | :--- | :--- |
+| **01** | **I2TFv1** | **Image-to-Text Fusion (Base)** | Fusion baseline using standard off-the-shelf models (Base RoBERTa, Base BLIP) + LLM reasoning. |
+| **02** | **I2TFv2** | **Image-to-Text Fusion (Upgraded)** | Identical architecture to v1 but uses upgraded underlying models (e.g., Fakeddit-finetuned RoBERTa). |
+| **03** | **SAFb** | **Blind Agent** | Single Agent that *cannot* see the image; relies only on tools/captions to reason. |
+| **04** | **SAFv** | **Vision Agent** | Single Agent that *sees* the image directly + uses tools. |
+| **05** | **MAH** | **Multi-Agent Hierarchy** | Panel of Experts (Vision, Text, Context) + Final Judge Agent. |
+
+---
+
 ## Benchmark Results
 
 Performance on Balanced Fakeddit Subset (75 Fake / 75 Real).

@@ -28,10 +28,14 @@ The transition to the Vision-Enabled Agent involves specific architectural chang
 | **Text Tool** | Analyzes Headline + **Caption** | Analyzes **Headline Only** (Reduces noise) |
 | **Consistency Tool** | Measures Image↔Caption similarity | **Drops** Image↔Caption check (Redundant) |
 
+> **Note:** The underlying core models (CLIP, RoBERTa, MPNet, VADER) remain constant across both pipelines
+
 ### Experimental Goal
 
 This design is set up to jointly probe two critical factors:
 1.  **The Value of Direct Perception:** Does giving the agent "eyes" outperform relying on converted text descriptions (captions)?
 2.  **Noise Reduction:** Does down-weighting noisy AI-generated captions in the tool stack improve decision stability?
 
-> **Note:** The underlying core models (CLIP, RoBERTa, MPNet, VADER) remain constant across both pipelines
+---
+
+👉 **[Go to Phase 3: Final Pipelines (Multi-Agent)](../FinalPipelines)**

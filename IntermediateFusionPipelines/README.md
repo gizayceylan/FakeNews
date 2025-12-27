@@ -1,13 +1,14 @@
-# Intermediate Fusion Pipelines (Single-Agent)
+# Phase 2: Intermediate Pipelines (Single-Agent)
 
 This directory contains **intermediate fusion pipelines** that sit between the experimental baselines in [`../EarlyPipelines/`](../EarlyPipelines/) and the final multi-agent system in [`../FinalPipelines/`](../FinalPipelines/).
 
-All notebooks in this folder utilize a **Single-Agent Fusion (SAF)** approach featuring:
+All notebooks in this folder utilize a **Single-Agent Fusion (SAF)** approach implemented via **LangChain**, featuring:
 * a **single LLM** acting as the central reasoner,
+* **LangChain Orchestration** to bind custom tools and manage the execution loop,
 * **multiple tools** (Vision, Text, Consistency) for evidence gathering,
 * and a **structured prompt** that enforces a phase-based reasoning loop (*Intuition → Tools → Synthesis*).
 
-## Included Pipelines
+### Included Pipelines
 
 1.  **Blind Tool-Using Agent (`SAFb`)**
     * **Mechanism:** The LLM *cannot* see the image. It relies entirely on tool outputs (captions, CLIP scores) to understand visual content.
@@ -28,7 +29,7 @@ The transition to the Vision-Enabled Agent involves specific architectural chang
 | **Text Tool** | Analyzes Headline + **Caption** | Analyzes **Headline Only** (Reduces noise) |
 | **Consistency Tool** | Measures Image↔Caption similarity | **Drops** Image↔Caption check (Redundant) |
 
-> **Note:** The underlying core models (CLIP, RoBERTa, MPNet, VADER) remain constant across both pipelines
+> **Note:** The underlying core models (CLIP, RoBERTa, MPNet, VADER) remain constant across both pipelines.
 
 ### Experimental Goal
 

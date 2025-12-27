@@ -7,8 +7,6 @@ All notebooks in this folder utilize a **Single-Agent Fusion (SAF)** approach fe
 * **multiple tools** (Vision, Text, Consistency) for evidence gathering,
 * and a **structured prompt** that enforces a phase-based reasoning loop (*Intuition → Tools → Synthesis*).
 
----
-
 ## Included Pipelines
 
 1.  **Blind Tool-Using Agent (`SAFb`)**
@@ -18,8 +16,6 @@ All notebooks in this folder utilize a **Single-Agent Fusion (SAF)** approach fe
 2.  **Vision-Enabled Tool-Using Agent (`SAFv`)**
     * **Mechanism:** The LLM receives the **image directly** in the prompt alongside the same tools.
     * **Goal:** Measure the "Value of Vision" and the impact of reducing noise from captioning tools.
-
----
 
 ### Key Differences: Blind vs. Vision
 

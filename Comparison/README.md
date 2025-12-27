@@ -24,6 +24,6 @@ Performance on Balanced Fakeddit Subset (75 Fake / 75 Real).
 
 | Pipeline | Avg Runtime (sec/sample) | Use Case Recommendation |
 | :--- | :--- | :--- |
-| **02_I2TFv2** | **~1.51s** | **Real-Time Filtering.** Best for rapidly discarding obvious fakes. |
+| **02_I2TFv2** | **~1.51s** | **Real-Time Filtering.** Best for rapidly discarding obvious fakes before expensive processing. |
 | **04_SAFv** | ~8.05s | **Maximum Detection.** Best for automated flagging systems where missing a fake is unacceptable. |
 | **05_MAH** | ~12.09s | **Human Verification.** Best for providing a "Second Opinion" with detailed written explanations. |

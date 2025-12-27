@@ -8,13 +8,13 @@ It includes full source code, granular tool/agent performance metrics, and a com
 
 Performance on Balanced Fakeddit Subset (75 Fake / 75 Real).
 
-| Pipeline | Accuracy | Counts (TP/FP/TN/FN) | Fake P/R | Real P/R |
+| Pipeline | Accuracy | Fake P/R | Real P/R | Counts (TP/FP/TN/FN) |
 | :--- | :--- | :--- | :--- | :--- |
-| **04_SAFv** | **0.833** | 53 / 3 / 72 / 22 | P=0.77, **R=0.96** | **P=0.95**, R=0.71 |
-| **05_MAH** | 0.813 | 57 / 10 / 65 / 18 | **P=0.78**, R=0.87 | P=0.85, **R=0.76** |
-| **02_I2TFv2** | 0.747 | 38 / 1 / 74 / 37 | P=0.67, **R=0.99** | **P=0.97**, R=0.51 |
-| **03_SAFb** | 0.740 | 38 / 2 / 73 / 37 | P=0.66, R=0.97 | P=0.95, R=0.51 |
-| **01_I2TFv1** | 0.600 | 24 / 9 / 66 / 51 | P=0.56, R=0.88 | P=0.73, R=0.32 |
+| **04_SAFv** | **0.833** | P=0.77, **R=0.96** | **P=0.95**, R=0.71 | 53 / 3 / 72 / 22 |
+| **05_MAH** | 0.813 | **P=0.78**, R=0.87 | P=0.85, **R=0.76** | 57 / 10 / 65 / 18 |
+| **02_I2TFv2** | 0.747 | P=0.67, **R=0.99** | **P=0.97**, R=0.51 | 38 / 1 / 74 / 37 |
+| **03_SAFb** | 0.740 | P=0.66, R=0.97 | P=0.95, R=0.51 | 38 / 2 / 73 / 37 |
+| **01_I2TFv1** | 0.600 | P=0.56, R=0.88 | P=0.73, R=0.32 | 24 / 9 / 66 / 51 |
 
 *Note: TP=True Positive (Correct Real), TN=True Negative (Correct Fake).*
 

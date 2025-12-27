@@ -22,6 +22,3 @@ Performance on Balanced Fakeddit Subset (75 Fake / 75 Real).
 | **04_SAFv** | ~8.05s | **Maximum Detection.** Best for automated flagging systems where missing a fake is unacceptable. |
 | **05_MAH** | ~12.09s | **Human Verification.** Best for providing a "Second Opinion" with detailed written explanations. |
 
----
-
-## Repository Structure

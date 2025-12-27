@@ -41,3 +41,12 @@ Performance on Balanced Fakeddit Subset (75 Fake / 75 Real).
 | **02_I2TFv2** | **~1.51s** | **Real-Time Filtering.** Best for rapidly discarding obvious fakes before expensive processing. |
 | **04_SAFv** | ~8.05s | **Maximum Detection.** Best for automated flagging systems where missing a fake is unacceptable. |
 | **05_MAH** | ~12.09s | **Human Verification.** Best for providing a "Second Opinion" with detailed written explanations. |
+
+## Key Insights
+
+---
+
+1.  **Direct Vision is Critical:** While the headline provides a strong veracity signal, relying solely on image captions (indirect vision) hits a performance ceiling. Detecting multimodal misinformation requires **direct visual perception** to verify subtle image-text conflicts effectively.
+2.  **Simple Fusion is "Nervous":** Baseline fusion models (like I2TF) function well as **high-recall filters**—they catch almost all fakes but generate excessive false positives because they lack the reasoning capability to exonerate weird-but-real news.
+3.  **The Interpretability Trade-off:** Increasing architectural complexity (moving from Single-Agent to Multi-Agent) yields a massive gain in **explainability and transparency**, but comes at a trade-off in processing speed.
+4.  **Impact of Domain Specialization:** The performance jump in the baseline models demonstrates the value of using domain-specific tools (e.g., Fakeddit-trained classifiers) over generic ones. However, even specialized models have blind spots, which necessitates an **intelligent agent** to weigh these imperfect signals—or good **prompt engineering** to teach the nuance—rather than blindly trusting them.

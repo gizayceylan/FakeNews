@@ -15,7 +15,6 @@ It currently includes:
 - **Blind tool-using agent** – LLM cannot see the image, relies on tools.
 - **Vision-enabled tool-using agent** – LLM sees the image + uses the same tools.
 
----
 **Key Differences in Vision Version**
 
 Compared to the **blind/tool-only** pipeline:

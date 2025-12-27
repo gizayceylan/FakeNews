@@ -1,3 +1,9 @@
+# Comparison of Selected Pipelines
+
+This directory evaluates the progress of **five selected pipelines**, analyzing the critical trade-offs between **statistical performance** (Precision/Recall), **agentic reasoning**, and **detection speed**.
+
+It includes full source code, granular tool/agent performance metrics, and a comparative benchmark on a balanced Fakeddit subset (N=150).
+
 ## Benchmark Results
 
 Performance on Balanced Fakeddit Subset (75 Fake / 75 Real).
@@ -21,4 +27,3 @@ Performance on Balanced Fakeddit Subset (75 Fake / 75 Real).
 | **02_I2TFv2** | **~1.51s** | **Real-Time Filtering.** Best for rapidly discarding obvious fakes. |
 | **04_SAFv** | ~8.05s | **Maximum Detection.** Best for automated flagging systems where missing a fake is unacceptable. |
 | **05_MAH** | ~12.09s | **Human Verification.** Best for providing a "Second Opinion" with detailed written explanations. |
-

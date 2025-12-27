@@ -42,9 +42,9 @@ Performance on Balanced Fakeddit Subset (75 Fake / 75 Real).
 | **04_SAFv** | ~8.05s | **Maximum Detection.** Best for automated flagging systems where missing a fake is unacceptable. |
 | **05_MAH** | ~12.09s | **Human Verification.** Best for providing a "Second Opinion" with detailed written explanations. |
 
-## Key Insights
-
 ---
+
+## Key Insights
 
 1.  **Direct Vision is Critical:** While the headline provides a strong veracity signal, relying solely on image captions (indirect vision) hits a performance ceiling. Detecting multimodal misinformation requires **direct visual perception** to verify subtle image-text conflicts effectively.
 2.  **Simple Fusion is "Nervous":** Baseline fusion models (like I2TF) function well as **high-recall filters**—they catch almost all fakes but generate excessive false positives because they lack the reasoning capability to exonerate weird-but-real news.

@@ -1,39 +1,41 @@
-# Intermediate Fusion Pipelines
+# Intermediate Fusion Pipelines (Single-Agent)
 
-This folder contains **intermediate fusion pipelines** that sit between the
-early experimental baselines in `InitialPipelines/` and the planned final
-multimodal agentic system.
+This directory contains **intermediate fusion pipelines** that sit between the experimental baselines in [`../EarlyPipelines/`](../EarlyPipelines/) and the final multi-agent system in [`../FinalPipelines/`](../FinalPipelines/).
 
-All notebooks here use:
+All notebooks in this folder utilize a **Single-Agent Fusion (SAF)** approach featuring:
+* a **single LLM** acting as the central reasoner,
+* **multiple tools** (Vision, Text, Consistency) for evidence gathering,
+* and a **structured prompt** that enforces a phase-based reasoning loop (*Intuition → Tools → Synthesis*).
 
-- a **single LLM** acting as an agent,
-- multiple tools (vision, text, consistency),
-- and a structured, phase-based reasoning prompt.
+---
 
-It currently includes:
+## Included Pipelines
 
-- **Blind tool-using agent** – LLM cannot see the image, relies on tools.
-- **Vision-enabled tool-using agent** – LLM sees the image + uses the same tools.
+1.  **Blind Tool-Using Agent (`SAFb`)**
+    * **Mechanism:** The LLM *cannot* see the image. It relies entirely on tool outputs (captions, CLIP scores) to understand visual content.
+    * **Goal:** Establish a baseline for "reasoning without seeing."
 
-**Key Differences in Vision Version**
+2.  **Vision-Enabled Tool-Using Agent (`SAFv`)**
+    * **Mechanism:** The LLM receives the **image directly** in the prompt alongside the same tools.
+    * **Goal:** Measure the "Value of Vision" and the impact of reducing noise from captioning tools.
 
-Compared to the **blind/tool-only** pipeline:
+---
 
-- The vision-enabled agent:
-  - receives the **image directly** as part of the user message,
-  - bases its **initial impression** on **image + headline** (instead of headline alone).
-- The **Text Tool**:
-  - now analyzes **only the headline** (no longer analyzes the BLIP-2 caption in this setup).
-- The **Consistency Tool**:
-  - keeps the **headline–caption** semantic similarity,
-  - keeps the **image–headline** similarity,
-  - **drops** the **image–caption** similarity term, because the agent can visually inspect the image itself.
+### Key Differences: Blind vs. Vision
 
-As a result, this design **jointly probes two factors**:
-  1. The contribution of **direct visual access** for the agent, and  
-  2. The effect of **down-weighting noisy AI captions** in the tool stack.
+The transition to the Vision-Enabled Agent involves specific architectural changes to reduce redundancy and noise:
 
-The dataset and core models (CLIP, RoBERTa, MPNet, VADER) remain the same across both pipelines; what changes is **how strongly the caption enters the decision process** and whether the agent can "see" the image directly.
+| Feature | Blind Agent (`SAFb`) | Vision Agent (`SAFv`) |
+| :--- | :--- | :--- |
+| **Visual Access** | **None** (Relies on captions/tools) | **Direct** (Image embedded in user prompt) |
+| **Initial Impression** | Based on **Headline only** | Based on **Image + Headline** |
+| **Text Tool** | Analyzes Headline + **Caption** | Analyzes **Headline Only** (Reduces noise) |
+| **Consistency Tool** | Measures Image↔Caption similarity | **Drops** Image↔Caption check (Redundant) |
 
-These pipelines serve as **intermediate baselines** to compare against both
-simple unimodal models (CLIP, RoBERTa) and the future LangGraph-based system.
+### Experimental Goal
+
+This design is set up to jointly probe two critical factors:
+1.  **The Value of Direct Perception:** Does giving the agent "eyes" outperform relying on converted text descriptions (captions)?
+2.  **Noise Reduction:** Does down-weighting noisy AI-generated captions in the tool stack improve decision stability?
+
+> **Note:** The underlying core models (CLIP, RoBERTa, MPNet, VADER) remain constant across both pipelines

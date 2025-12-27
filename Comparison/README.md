@@ -2,7 +2,7 @@
 
 This directory evaluates the progress of **five selected pipelines**, analyzing the critical trade-offs between **statistical performance** (Accuracy, Precision/Recall), **agentic reasoning**, and **detection speed**.
 
-It includes full source code, granular tool/agent performance metrics, and a comparative benchmark on a balanced Fakeddit subset (N=150).
+It includes the source code **[(notebooks)](./notebooks/)**, granular tool/agent performance metrics, and a comparative benchmark on a balanced Fakeddit subset (N=150).
 
 ## Benchmark Results
 

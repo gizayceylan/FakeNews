@@ -122,6 +122,14 @@ First, clone the repository and navigate into the project folder to ensure all n
 ## References
 *Nakamura, K., et al. (2020). Fakeddit: A New Multimodal Benchmark Dataset for Fine-grained Fake News Detection.*
 
+```bibtex
+@article{nakamura2019r,
+    title={r/Fakeddit: A New Multimodal Benchmark Dataset for Fine-grained Fake News Detection},
+    author={Nakamura, Kai and Levy, Sharon and Wang, William Yang},
+    journal={arXiv preprint arXiv:1911.03854},
+    year={2019}}
+```
+
 ---
 
 ## License

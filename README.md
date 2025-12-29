@@ -44,7 +44,7 @@ A shift toward autonomous agency using **LangChain**. These agents are not just 
 
 ### **Phase 3: Final Decentralized Multi-Agent System (1 Pipeline)**
 The final architecture moves to a **Hierarchical "Panel of Experts."**
-* **MAH (Multi-Agent Hierarchical):** The workload is decentralized. Specialized forensic agents (Vision, Text, Context) work in parallel on their specific modalities and submit expert reports to a central **Judge Agent**. The Judge synthesizes these high-level reports to deliver a final verdict with deep reasoning.
+* [(**Multi-Agent Hierarchical (MAH)**)](./FinalPipelines/Multi_Agent_Hierarchical.ipynb) The workload is decentralized. Specialized forensic agents (Vision, Text, Context) work in parallel on their specific modalities and submit expert reports to a central **Judge Agent**. The Judge synthesizes these high-level reports to deliver a final verdict with deep reasoning.
 
 ---
 

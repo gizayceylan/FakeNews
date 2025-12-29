@@ -12,6 +12,9 @@
 7. [Future Work](#future-work)
 8. [Repository Structure](#repository-structure)
 9. [Setup Instructions](#setup-instructions)
+10. [References](#references)
+11. [License](#license)
+
 
 ---
 
@@ -110,13 +113,54 @@ The benchmarks reveal a clear trade-off between speed, accuracy, and interpretab
 
 ## Setup Instructions
 
-1. Repository Initialization
+### 1. Repository Initialization
+
 First, clone the repository and navigate into the project folder to ensure all notebooks correctly resolve relative paths for utilities and assets.
 
 ```bash
-!git clone [https://github.com/gizayceylan/FakeNews.git](https://github.com/gizayceylan/FakeNews.git)
+!git clone https://github.com/gizayceylan/FakeNews.git
 %cd FakeNews
 ```
+
+### 2. General Model Dependencies
+
+This project requires **Python 3.10+**. The following command installs the libraries needed for specialized models and agentic frameworks.
+
+```bash
+# Specialized Models
+!pip install -q transformers sentence-transformers vaderSentiment openai torch torchvision 
+
+# Agentic Orchestration
+!pip install -q langgraph langchain-openai langchain-community
+```
+> [!NOTE]
+> Each notebook in this project includes local setup instructions specific to its architecture. While GPU is recommended for vision models (BLIP/BLIP-2/CLIP), the repo can still be explored on CPU with higher latency.
+
+### 3. Environment Compatibility (SAFb & SAFv Only)  
+The Phase 2 pipelines (**SAFb** and **SAFv**) utilize **LangChain Legacy Agents**. These are highly sensitive to version conflicts with default packages in environments like Google Colab.
+
+> [!IMPORTANT]
+> For Phase 2 agents, you **must** follow the specialized "Uninstall & Reinstall" sequence provided inside those specific notebooks. This ensures the environment is downgraded correctly to support legacy agent logic.
+
+### 4. API Configuration
+The agents require an OpenAI API key. The project includes a secure utility in `utils/api_key.py` to handle credentialing:
+
+* **Google Colab:** Add your key to the **Secrets** tab (🔑) with the name `OPENAI_API_KEY`.
+* **Local Environment:** Set the environment variable `export OPENAI_API_KEY='your-key-here'`.
+* **Fallback:** If no key is detected, the system will securely prompt you for one at runtime.
+
+### 5. Artifacts
+Ensure the artifacts are present in the [`assets/`](./assets/) directory (these are loaded automatically by the notebooks).
+
+### 6. Quick Start
+The project is organized by the level of agentic complexity. You can explore the research by running the notebooks in their respective directories:
+
+* **Early Baselines**: [`EarlyPipelines/`](./EarlyPipelines/)  
+* **Tool-Using Agents**: [`IntermediatePipelines/`](./IntermediatePipelines/)  
+* **Multi-Agent System**: [`FinalPipelines/`](./FinalPipelines/)  
+* **Comparison Pipelines**: [`notebooks/`](./Comparison/notebooks/)  
+  *Run the [**Pipeline_Comparison.ipynb**](./Comparison/Pipeline_Comparison.ipynb) to reproduce the head-to-head metrics across all phases.*
+
 ---
 
 ## References
@@ -129,7 +173,6 @@ First, clone the repository and navigate into the project folder to ensure all n
     journal={arXiv preprint arXiv:1911.03854},
     year={2019}}
 ```
-
 ---
 
 ## License

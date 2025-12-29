@@ -12,9 +12,8 @@
 7. [Future Work](#future-work)
 8. [Repository Structure](#repository-structure)
 9. [Setup Instructions](#setup-instructions)
-10. [References](#references)
+10. [Citation & References](#citation--references)
 11. [License](#license)
-
 
 ---
 
@@ -163,16 +162,33 @@ The project is organized by the level of agentic complexity. You can explore the
 
 ---
 
-## References
-*Nakamura, K., et al. (2020). Fakeddit: A New Multimodal Benchmark Dataset for Fine-grained Fake News Detection.*
+## Citation & References
+
+If you use this work, please cite it as below:
+
+
+```bibtex
+@software{ceylan_fakenews_2025,
+  author = {Ceylan, Gizay},
+  title = {{Agentic Systems for Multimodal Content Authenticity Verification}},
+  url = {https://github.com/gizayceylan/FakeNews},
+  version = {1.0.0},
+  year = {2025}
+}
+```
+
+If you use Fakeddit dataset, please cite it as follows, per creators' official request:
+
 
 ```bibtex
 @article{nakamura2019r,
     title={r/Fakeddit: A New Multimodal Benchmark Dataset for Fine-grained Fake News Detection},
     author={Nakamura, Kai and Levy, Sharon and Wang, William Yang},
     journal={arXiv preprint arXiv:1911.03854},
-    year={2019}}
+    year={2019}
+}
 ```
+
 ---
 
 ## License

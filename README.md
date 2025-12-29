@@ -36,7 +36,7 @@ This project evaluated 8 distinct pipelines developed across three phases. While
 ### **Phase 1: Early "Signal Synthesis" Agents (5 Pipelines)**
 In this stage, the LLM acts as a synthesizer of pre-computed signals. It receives outputs from specific classifiers (RoBERTa, CLIP, ST Similarity) along with raw text (headline or caption) and renders a verdict based on short, direct prompts.
 * **Pipelines:** `Text_Only`, `Visual_Only`, `Image_to_Text`, `Image_to_Text_Fusion (v1)`, and `I2TF (v2)`.
-[**Image_to_Text_Fusion (v2):**](./notebooks/02_I2TFv2.ipynb)
+[**Image_to_Text_Fusion (v2):**](./Comparison/notebooks/02_I2TFv2.ipynb)
 
 ### **Phase 2: Intermediate Autonomous Agents (2 Pipelines)**
 A shift toward autonomous agency using **LangChain**. These agents are not just fed signals; they are provided with specialized tools (Vision, Text, Context) and advanced prompting that guides them through phase-based reasoning and conflict resolution.

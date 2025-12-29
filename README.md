@@ -5,7 +5,7 @@
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Problem Statement](#problem-statement)
-3. [The Research Roadmap: Evolution of Agency](#the-research-roadmap-evolution-of-agency-8-pipelines)
+3. [The Research Roadmap: Evolution of Agency](#the-research-roadmap-evolution-of-agency)
 4. [Architectural Shift: From Synthesis to Decentralized Reasoning](#architectural-shift-from-synthesis-to-decentralized-reasoning)
 5. [Selected Results](#selected-results)
 6. [Performance Takeaways](#performance-takeaways)

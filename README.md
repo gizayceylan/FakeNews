@@ -116,7 +116,7 @@ First, clone the repository and navigate into the project folder to ensure all n
 ```bash
 !git clone [https://github.com/gizayceylan/FakeNews.git](https://github.com/gizayceylan/FakeNews.git)
 %cd FakeNews
-
+```
 ---
 
 ## References

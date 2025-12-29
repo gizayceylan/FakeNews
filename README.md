@@ -5,11 +5,13 @@
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Problem Statement](#problem-statement)
-3. [The Research Roadmap: Evolution of Agency (8 Pipelines)](#the-research-roadmap-evolution-of-agency-8-pipelines)
+3. [The Research Roadmap: Evolution of Agency](#the-research-roadmap-evolution-of-agency-8-pipelines)
 4. [Architectural Shift: From Synthesis to Decentralized Reasoning](#architectural-shift-from-synthesis-to-decentralized-reasoning)
-5. [Evaluation Results](#evaluation-results)
-6. [Repository Structure](#repository-structure)
-7. [Setup Instructions](#setup-instructions)
+5. [Selected Results](#selected-results)
+6. [Performance Takeaways](#performance-takeaways)
+7. [Future Work](#future-work)
+8. [Repository Structure](#repository-structure)
+9. [Setup Instructions](#setup-instructions)
 
 ---
 
@@ -29,23 +31,26 @@ Experimental observations across the development of these pipelines highlight th
 
 ---
 
-## The Research Roadmap: Evolution of Agency (8 Pipelines)
+## The Research Roadmap: Evolution of Agency
 
-This project evaluated 8 distinct pipelines developed across three phases. While 7 pipelines represent the core evolutionary path, an upgraded version of the Fusion model (v2) was introduced during the comparison stage to analyze the impact of model performance on agentic decisions.
+This project evaluated 8 distinct pipelines developed across three phases, defined by the complexity of the architecture, agent's role and prompt engineering.
 
-### **Phase 1: Early "Signal Synthesis" Agents (5 Pipelines)**
-In this stage, the LLM acts as a synthesizer of pre-computed signals. It receives outputs from specific classifiers (RoBERTa, CLIP, ST Similarity) along with raw text (headline or caption) and renders a verdict based on short, direct prompts.
-* **Pipelines:** `Text_Only`, `Visual_Only`, `Image_to_Text`, `Image_to_Text_Fusion (v1)`, and `I2TF (v2)`.
-[**Image_to_Text_Fusion (v2):**](./Comparison/notebooks/02_I2TFv2.ipynb)
+### ****[Phase 1:](../EarlyPipelines)** Early "Signal Synthesis" Agents (5 Pipelines)**
+In this stage, the LLM acts as a synthesizer of pre-computed signals. It receives outputs from specific models (RoBERTa, CLIP, BLIP, BLIP-2, SentenceTransformers) along with raw text (headline or caption) and renders a verdict based on short, direct prompts.
+* [**Text_Only:**](./EarlyPipelines/Text_Only.ipynb) An agent evaluates content authenticity using only the headline and RoBERTa headline classification results.
+* [**Visual_Only:**](./EarlyPipelines/Visual_Only.ipynb) An agent evaluates content authenticity using only CLIP-extracted visual concepts (indirect vision) and CLIP classification results.
+* [**Image_to_Text:**](./EarlyPipelines/Image_to_Text.ipynb) An agent uses a BLIP-generated caption as a proxy for the image, treating multimodal verification as a text-only detection task and relies on RoBERTa caption classification results.
+* [**Image_to_Text_Fusion (v1):**](./EarlyPipelines/Image_to_Text_Fusion.ipynb) An agent fuses headline and caption signals, RoBERTa classification results, and the cosine similarity score between headline and caption (via SentenceTransformer) to evaluate content authenticity.
+* [**Image_to_Text_Fusion (v2):**](./Comparison/notebooks/02_I2TFv2.ipynb) An agent uses the same fusion workflow and logic as v1, but with BLIP-2 caption and domain-specific RoBERTa to isolate **model-choice effects** from fusion logic.
 
-### **Phase 2: Intermediate Autonomous Agents (2 Pipelines)**
-A shift toward autonomous agency using **LangChain**. These agents are not just fed signals; they are provided with specialized tools (Vision, Text, Context) and advanced prompting that guides them through phase-based reasoning and conflict resolution.
-* **SAFb (Blind):** An agent that interrogates metadata and captions to see "indirectly."
-* **SAFv (Vision):** An agent with direct access to a **Zero-Shot Vision Tool**, testing the impact of direct modality access on investigative accuracy.
+### ****[Phase 2:](../IntermediatePipelines)** Intermediate Autonomous Agents (2 Pipelines)**
+A shift toward autonomous agency using **LangChain**. These agents are not just fed signals; they are provided with specialized tools (Vision, Text, Context) and advanced prompting that guides them through phase-based reasoning (intuition → tools → synthesis) and conflict resolution.
+* [**Single-Agent Fusion-Blind (SAFb):**](./IntermediatePipelines/Single_Agent_Fusion_Blind.ipynb) An agent that cannot see the image directly and relies only on a headline to form an impression; uses tools and captions (indirect vision) to gather multimodal evidence; synthesizes all to provide a final decision, reasoning, and nudge.
+* [**Single-Agent Fusion-Vision (SAFv):**](./IntermediatePipelines/Single_Agent_Fusion_Vision.ipynb) An agent with direct access to both image and headline content to form an impression; uses tools to gather more multimodal evidence; synthesizes all to provide a final decision, reasoning, and nudge.
 
-### **Phase 3: Final Decentralized Multi-Agent System (1 Pipeline)**
-The final architecture moves to a **Hierarchical "Panel of Experts."**
-* [(**Multi-Agent Hierarchical (MAH)**)](./FinalPipelines/Multi_Agent_Hierarchical.ipynb) The workload is decentralized. Specialized forensic agents (Vision, Text, Context) work in parallel on their specific modalities and submit expert reports to a central **Judge Agent**. The Judge synthesizes these high-level reports to deliver a final verdict with deep reasoning.
+### ****[Phase 3:](../FinalPipelines)** Final Decentralized Multi-Agent System (1 Pipeline)**
+The final architecture moves to a **Hierarchical "Panel of Experts"**, built on **LangGraph**. Workload is divided among specialized agents guided through advanced prompting to follow phase-based reasoning.
+* [**Multi-Agent Hierarchical (MAH):**](./FinalPipelines/Multi_Agent_Hierarchical.ipynb) The workload is decentralized. Specialized forensic agents (Vision, Text, Context) work independently on their specific modalities and submit expert reports to a central Judge Agent. The Judge synthesizes these high-level reports to deliver a final verdict with deep reasoning and user-facing nudge.
 
 ---
 
@@ -55,18 +60,36 @@ The primary technical contribution of this research is the documentation of how 
 
 1.  **Workload Optimization**: By moving from a single agent doing all the work (SAFv) to a multi-agent system (MAH), the task is decentralized. Modality-specific agents focus on their own evidence without being biased by other signals, while the Judge provides an objective synthesis.
 2.  **Prompt Engineering Evolution**: Early prompts were limited to simple instructions. Intermediate and Final stages use carefully crafted prompts that include tool explanations, phase-based logic, and explicit conflict-solving recommendations.
-3.  **Explainability vs. Accuracy**: While increasing complexity impacts processing time, it significantly improves the depth of the reasoning logs and the clarity of the user-facing "nudges."
+3.  **Explainability vs. Speed**: While increasing complexity impacts processing time, it significantly improves the depth of the reasoning logs and the clarity of the user-facing "nudges".
 
 ---
 
-## Evaluation Results
-*Selected pipelines compared on a balanced (50/50) Fakeddit subset (N=150).*
+## Selected Results
+*Compared on a class balanced Fakeddit subset (N=150; latency = sec/sample):*
 
-| Pipeline | Accuracy | Fake Recall (Detection) | Decision Logic |
-| :--- | :--- | :--- | :--- |
-| **SAFv (Vision Agent)** | **0.833** | **0.96** | Direct Visual Investigation |
-| **MAH (Multi-Agent)** | 0.813 | 0.87 | Decentralized Forensic Reports |
-| **I2TFv2 (Baseline Fusion)** | 0.747 | 0.99 | Signal Synthesis (Aggressive) |
+| Pipeline | Phase | Latency | Accuracy | Fake P/R | Real P/R | Decision Logic |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **MAH (Multi-Agent)** | Final | ~12.09s | **0.813** | **P=0.78**, R=0.87 | P=0.85, **R=0.76** | Decentralized Expert Reports |
+| **SAFv (Single-Agent)** | Intermediate | ~8.05s | **0.833** | P=0.77, **R=0.96** | **P=0.95**, R=0.71 | Direct Multimodal Investigation |
+| **I2TFv2 (Baseline Fusion)** | Early | **~1.51s** | 0.747 | P=0.67, **R=0.99** | **P=0.97**, R=0.51 | Signal Synthesis (Aggressive) |
+
+---
+
+## Performance Takeaways
+
+The benchmarks reveal a clear trade-off between speed, accuracy, and interpretability. Depending on the deployment needs, different pipelines serve different roles:
+
+* **MAH (High Accuracy | Low Speed):** → Best for **human-in-the-loop verification**. While it has a higher "reasoning tax" (latency), it offers the most balanced recall and provides specialized reports that make verdicts auditable.
+* **SAFv (High Accuracy | Moderate Speed):** → Best for **autonomous fake news detection**. By giving the agent "eyes", it achieves the best balance of identifying fakes without the complexity of a full multi-agent overhead.
+* **I2TFv2 (Moderate Accuracy | High Speed):** → Best for **real-time filtering**. Its aggressive nature makes it an ideal first-line defense for screening massive content streams before passing suspicious cases to more advanced agents.
+
+---
+
+## Future Work
+1.  **Refining Vision:** Replacing or re-scoping the vision component with a model upgrade (e.g., FastVLM) to enable direct image reasoning and contextual understanding, improving both speed and accuracy.
+2.  **Reducing Latency:** Optimizing the multi-agent communication overhead to make it viable for real-time streams.
+3.  **Web Search Integration:** Equipping an agent with live internet search capabilities to verify breaking news events against trusted external sources and fact-checking databases.
+4.  **Human-in-the-Loop:** Building a UI where the agent presents its evidence to a human moderator for final approval.
 
 ---
 
@@ -74,23 +97,33 @@ The primary technical contribution of this research is the documentation of how 
 
 | Directory | Description |
 | :--- | :--- |
-| **[`Comparison/`](./Comparison/)** | Consolidated benchmarks, runtime logs, and the master comparison notebook for the 5 selected finalist pipelines. |
-| **[`FinalPipelines/`](./FinalPipelines/)** | Source code for the decentralized **Multi-Agent Hierarchical (MAH)** system. |
-| **[`IntermediatePipelines/`](./IntermediatePipelines/)** | Source code for the autonomous **SAFb** and **SAFv** single-agent frameworks. |
-| **[`EarlyPipelines/`](./EarlyPipelines/)** | The foundational experiments using simple "Signal Synthesis" agents. |
-| **[`preprocessing/`](./preprocessing/)** | The data foundry: EDA, CLIP embedding generation, BLIP-2 captioning, and tool calibration. |
 | **[`assets/`](./assets/)** | Critical runtime artifacts (embeddings, image archives, calibration bins). |
+| **[`Comparison/`](./Comparison/)** | Consolidated benchmarks, runtime logs, and the master comparison notebook for the 5 selected finalist pipelines. |
 | **[`Datasets/`](./Datasets/)** | Raw metadata and external vocabularies (ImageNet/Places365). |
+| **[`EarlyPipelines/`](./EarlyPipelines/)** | The foundational experiments using simple "Signal Synthesis" agents. |
+| **[`IntermediatePipelines/`](./IntermediatePipelines/)** | Source code for the autonomous SAFb and SAFv single-agent systems. |
+| **[`FinalPipelines/`](./FinalPipelines/)** | Source code for the decentralized MAH multi-agent system. |
+| **[`preprocessing/`](./preprocessing/)** | The data foundry: EDA, CLIP embedding generation, BLIP-2 captioning, and tool calibration. |
+| **[`utils/`](./utils/)** | Contains utility script for secure API client management across different environments (Local/Colab). |
 
 ---
 
 ## Setup Instructions
 
-1.  **Configure API Keys**: Add your credentials to **`utils/api_key.py`**.
-2.  **Verify Assets**: Ensure `fakeddit_images.zip` and `concept_embeddings.npy` are in the **`assets/`** directory.
-3.  **Reproduce Benchmarks**: Open **`Comparison/Pipeline_Comparison.ipynb`** to view the consolidated performance metrics and charts.
+1. Repository Initialization
+First, clone the repository and navigate into the project folder to ensure all notebooks correctly resolve relative paths for utilities and assets.
 
+```bash
+!git clone [https://github.com/gizayceylan/FakeNews.git](https://github.com/gizayceylan/FakeNews.git)
+%cd FakeNews
+```
 ---
 
 ## References
 *Nakamura, K., et al. (2020). Fakeddit: A New Multimodal Benchmark Dataset for Fine-grained Fake News Detection.*
+
+---
+
+## License
+
+See [`LICENSE`](LICENSE).

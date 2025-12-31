@@ -45,12 +45,12 @@ In this stage, the LLM acts as a synthesizer of pre-computed signals. It receive
 * [**Image_to_Text_Fusion (v1):**](./EarlyPipelines/Image_to_Text_Fusion.ipynb) An agent fuses headline and caption signals, RoBERTa classification results, and the cosine similarity score between headline and caption (via SentenceTransformer) to evaluate content authenticity.
 * [**Image_to_Text_Fusion (v2):**](./Comparison/notebooks/02_I2TFv2.ipynb) An agent uses the same fusion workflow and logic as v1, but with BLIP-2 caption and domain-specific RoBERTa to isolate **model-choice effects** from fusion logic.
 
-### ****[Phase 2:](../IntermediatePipelines)** Intermediate Autonomous Agents (2 Pipelines)**
+### **[Phase 2:](./IntermediatePipelines) Intermediate "Autonomous" Agents (2 Pipelines)**
 A shift toward autonomous agency using **LangChain**. These agents are not just fed signals; they are provided with specialized tools (Vision, Text, Context) and advanced prompting that guides them through phase-based reasoning (intuition → tools → synthesis) and conflict resolution.
 * [**Single-Agent Fusion-Blind (SAFb):**](./IntermediatePipelines/Single_Agent_Fusion_Blind.ipynb) An agent that cannot see the image directly and relies only on a headline to form an impression; uses tools and captions (indirect vision) to gather multimodal evidence; synthesizes all to provide a final decision, reasoning, and nudge.
 * [**Single-Agent Fusion-Vision (SAFv):**](./IntermediatePipelines/Single_Agent_Fusion_Vision.ipynb) An agent with direct access to both image and headline content to form an impression; uses tools to gather more multimodal evidence; synthesizes all to provide a final decision, reasoning, and nudge.
 
-### ****[Phase 3:](../FinalPipelines)** Final Decentralized Multi-Agent System (1 Pipeline)**
+### **[Phase 3:](./FinalPipelines) Final "Decentralized" Multi-Agent System (1 Pipeline)**
 The final architecture moves to a **Hierarchical "Panel of Experts"**, built on **LangGraph**. Workload is divided among specialized agents guided through advanced prompting to follow phase-based reasoning.
 * [**Multi-Agent Hierarchical (MAH):**](./FinalPipelines/Multi_Agent_Hierarchical.ipynb) The workload is decentralized. Specialized forensic agents (Vision, Text, Context) work independently on their specific modalities and submit expert reports to a central Judge Agent. The Judge synthesizes these high-level reports to deliver a final verdict with deep reasoning and user-facing nudge.
 

@@ -37,7 +37,7 @@ Experimental observations across the development of these pipelines highlight th
 
 This project evaluated 8 distinct pipelines developed across three phases, defined by the complexity of the architecture, agent's role and prompt engineering.
 
-### ****[Phase 1:](../EarlyPipelines)** Early "Signal Synthesis" Agents (5 Pipelines)**
+### **[Phase 1:](./EarlyPipelines/) Early "Signal Synthesis" Agents (5 Pipelines)**
 In this stage, the LLM acts as a synthesizer of pre-computed signals. It receives outputs from specific models (RoBERTa, CLIP, BLIP, BLIP-2, SentenceTransformers) along with raw text (headline or caption) and renders a verdict based on short, direct prompts.
 * [**Text_Only:**](./EarlyPipelines/Text_Only.ipynb) An agent evaluates content authenticity using only the headline and RoBERTa headline classification results.
 * [**Visual_Only:**](./EarlyPipelines/Visual_Only.ipynb) An agent evaluates content authenticity using only CLIP-extracted visual concepts (indirect vision) and CLIP classification results.
@@ -157,7 +157,7 @@ The project is organized by the level of agentic complexity. You can explore the
 * **Early Baselines**: [`EarlyPipelines/`](./EarlyPipelines/)  
 * **Tool-Using Agents**: [`IntermediatePipelines/`](./IntermediatePipelines/)  
 * **Multi-Agent System**: [`FinalPipelines/`](./FinalPipelines/)  
-* **Comparison Pipelines**: [`notebooks/`](./Comparison/notebooks/)  
+* **Comparison Pipelines**: [`Comparison/notebooks/`](./Comparison/notebooks/)  
   *Run the [**Pipeline_Comparison.ipynb**](./Comparison/Pipeline_Comparison.ipynb) to reproduce the head-to-head metrics across all phases.*
 
 ---
